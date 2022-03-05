@@ -1,0 +1,31 @@
+---
+- name: install docker
+  hosts: localhost
+
+  tasks:
+
+    - name: Atualizando servidor
+      apt: 
+        update_cache: yes
+      become: true
+
+    - name: Instalando Docker
+      shell: curl -fsSL https://get.docker.com | bash
+      args:
+        warn: no
+      become: true
+
+    - name: Instalando Docker-Docker-Compose
+      apt:
+        name: docker-compose
+        state: present
+      become: true
+
+    - name: Subindo conteiner Docker Zabbix
+      docker-compose:
+        project_src: ./
+        file:
+          - "docker-compose.yaml"
+        state: present
+      become: true
+      
