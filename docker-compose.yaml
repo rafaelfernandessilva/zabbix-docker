@@ -19,7 +19,7 @@ services:
   
   zabbix-server:
     container_name: zabbix-server
-    image: zabbix/zabbix-server-mysql:ubuntu-5.0.1
+    image: zabbix/zabbix-server-mysql:6.0.1-alpine
     restart: always
     environment:
       - DB_SERVER_HOST=mysql
@@ -39,7 +39,7 @@ services:
   
   zabbix-frontend:
     container_name: zabbix-frontend
-    image: zabbix/zabbix-web-apache-mysql:ubuntu-5.0.1
+    image: zabbix/zabbix-web-apache-mysql:6.0.1-alpine
     restart: always
     environment:
       - DB_SERVER_HOST=mysql

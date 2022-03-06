@@ -1,6 +1,6 @@
 ---
-- name: install docker
-  hosts: localhost
+- hosts: localhost
+  connection: local
 
   tasks:
 
@@ -21,11 +21,10 @@
         state: present
       become: true
 
-    - name: Subindo conteiner Docker Zabbix
-      docker-compose:
-        project_src: ./
-        file:
-          - "docker-compose.yaml"
+    - name: Iniciando Zabbix-Docker
+      docker_compose:
+        project_src: "{{ playbook_dir }}"
+        files:
+        - "docker-compose.yaml"
         state: present
       become: true
-      
